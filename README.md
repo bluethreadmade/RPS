@@ -1,2 +1,1 @@
-# RPS
-Rocks, paper, scissiors
+# Rock, Paper, Scissors Javascript Game
