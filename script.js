@@ -39,6 +39,14 @@
                 ties: 0,
             };
 
+    const weaponStats = 
+            {
+                Rock:  0,
+                Paper: 0,
+                Scissor: 0,
+            };
+
+
 // Functions
 
 while (play) {
@@ -55,6 +63,10 @@ while (play) {
         Wins: ${resultsTracking.wins}
         Losses: ${resultsTracking.losses}
         Ties: ${resultsTracking.ties}
+
+        Rock: ${weaponStats.Rock}
+        Paper: ${weaponStats.Paper}
+        Scissor: ${weaponStats.Scissor}
         `);
         };
 
@@ -63,10 +75,20 @@ while (play) {
 // Get a weapon from the user and check if it's valid
 function getUserWeapon(){
     let userWeaponLocal = prompt(`${globalWeapons[0]}, ${globalWeapons[1]} or ${globalWeapons[2]}`);
+    userWeaponLocal = userWeaponLocal.toUpperCase();
 
     if (!globalWeapons.includes(userWeaponLocal)) {
         alert("Invalid choice, try again");
-    } else{
+        getUserWeapon();
+    } 
+    else{
+        if (userWeaponLocal === "R") {
+            weaponStats.Rock ++;            
+        } else if(userWeaponLocal === "P") {
+            weaponStats.Paper ++;
+        } else {
+            weaponStats.Scissor ++;
+        }
         alert("all good");
     }
 
