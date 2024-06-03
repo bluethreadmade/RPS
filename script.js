@@ -21,7 +21,23 @@
     // wins, losses, Rcount Pcount Scount, weapons
     const globalWeapons = ["R", "P", "S"];
     let play = true;
+    // const statistics = [
+    //     {
+    //         wins: 0,
+    //         losses: 0,
+    //         ties: 0,
+    //     }{
+    //         R: 0,
+    //         P: 0,
+    //         S: 0, S
+    //     }];
 
+    const resultsTracking = 
+            {
+                wins: 0,
+                losses: 0,
+                ties: 0,
+            };
 
 // Functions
 
@@ -31,50 +47,72 @@ while (play) {
     computerWeapon= generateComputerWeapon();
     result(userWeapon,computerWeapon);
 
-    play = confirm(`Play Again?`);
 
-}
+    play = confirm(`Play Again?`);
+    
+    if (!play){
+        alert(`Stats:
+        Wins: ${resultsTracking.wins}
+        Losses: ${resultsTracking.losses}
+        Ties: ${resultsTracking.ties}
+        `);
+        };
+
+    };
 
 // Get a weapon from the user and check if it's valid
 function getUserWeapon(){
-    let userWeapon = prompt(`${globalWeapons[0]}, ${globalWeapons[1]} or ${globalWeapons[2]}`);
+    let userWeaponLocal = prompt(`${globalWeapons[0]}, ${globalWeapons[1]} or ${globalWeapons[2]}`);
 
-    if (!globalWeapons.includes(userWeapon)) {
+    if (!globalWeapons.includes(userWeaponLocal)) {
         alert("Invalid choice, try again");
     } else{
         alert("all good");
     }
 
-    return userWeapon;
+    return userWeaponLocal;
 }
 
 // Generate a weapon for the computer to play and let the user know what it is
 function generateComputerWeapon(){
     const computerTurnNum = Math.floor(Math.random() * globalWeapons.length);
-    const computerWeapon = globalWeapons[computerTurnNum];
+    const computerWeaponLocal = globalWeapons[computerTurnNum];
 
-    alert(`Computer plays ${computerWeapon}`);
-    return computerWeapon;
+    alert(`Computer plays ${computerWeaponLocal}`);
+    return computerWeaponLocal;
 }
 
 
 // Compare user weapon and computer weapon, alert win, lose, or draw
 // Check for ties first, then user wins, then use losses
+// Keep track of number of wins, losses or ties
 function result(userWeapon, computerWeapon){
 
      if (userWeapon === computerWeapon) {
+         resultsTracking.ties ++;
          alert(`It's a tie`);
-     } else if (
+
+     } 
+     else if (
          (userWeapon === "R" && computerWeapon === "S") || 
          (userWeapon === "P" && computerWeapon === "R") || 
          (userWeapon === "S" && computerWeapon === "P")
-       ){
-             alert(`You win!`); 
-     } else {
-         alert(`Computer wins!`);
-     }
+       )
+       {
+            resultsTracking.wins ++; 
+            alert(`You win!`); 
+     } 
+     else 
+     {
+                resultsTracking.losses ++;
+                alert(`Computer wins!`);
+     };
 
+     console.log(`${resultsTracking.losses}`)
+     return resultsTracking;
  }
+
+
 
 // User Interactions
 
