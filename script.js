@@ -17,7 +17,6 @@ const weaponStats =
     Scissor: 0,
 };
 
-
 // Functions
 
 // While loop, while play is true - run the get the users weapon, generate the computer weapon, run the result function, ask to play again
@@ -40,7 +39,6 @@ while (play) {
         Scissor: ${weaponStats.Scissor}
         `);
     };
-    
 };
 
 // Get a weapon from the user and check if it's valid
@@ -62,7 +60,6 @@ function getUserWeapon(){
             weaponStats.Scissor ++;
         }
     }
-    
     return userWeaponLocal;
 }
 
@@ -83,7 +80,6 @@ function result(userWeapon, computerWeapon){
     if (userWeapon === computerWeapon) {
         resultsTracking.ties ++;
         alert(`It's a tie`);
-        
     } 
     else if (
         (userWeapon === "R" && computerWeapon === "S") || 
